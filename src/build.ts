@@ -1,5 +1,6 @@
 import fs from "fs";
 import glob from "glob";
+import generateDecoded from "./decodebin";
 import parseInstruction from "./parseInstruction";
 
 glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
@@ -11,16 +12,22 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
         if (err) {
           return console.log(err);
         }
-        const binary = new Uint8Array(file.split("\n").length * 4);
-
-        var pos = 0;
+        const instructions = [];
         for (const line of file.split(/(?:\r\n)|\r|\n/)) {
           const command = parseInstruction(line);
 
           if (!command) continue;
+          instructions.push(command);
+        }
 
-          binary.set(command.toArray(), pos);
-          pos += command.length;
+        const binary = new Uint8Array(
+          instructions.reduce((acc, curr) => curr.length + acc, 0)
+        );
+
+        var pos = 0;
+        for (const instruction of instructions) {
+          binary.set(instruction.toArray(), pos);
+          pos += instruction.length;
         }
 
         fs.writeFile(
@@ -38,3 +45,5 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
     }
   }
 });
+
+generateDecoded();

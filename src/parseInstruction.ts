@@ -28,7 +28,7 @@ export default function parseInstruction(text: string) {
         instructions: macroMap[
           parts[1] as keyof typeof macroMap
         ].instructions.map((instruction) => {
-          instruction.data?.replace("${0}", parts[2]);
+            instruction.data = instruction.data?.replace("${0}", parts[2]);
           return new Instruction({
             instruction: instruction.instruction,
             data: safeNumber(parseNumber(instruction.data ?? "0")),

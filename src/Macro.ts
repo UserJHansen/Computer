@@ -16,7 +16,13 @@ export default class Macro implements BinaryElement {
     this.instructions = instructions;
   }
   toArray(): Uint8Array {
-    throw new Error("Method not implemented.");
+    const arr = new Uint8Array(this.length);
+    let i = 0;
+    for (const instruction of this.instructions) {
+      arr.set(instruction.toArray(), i);
+      i += instruction.length;
+    }
+    return arr;
   }
 
   get length() {
