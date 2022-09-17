@@ -2,7 +2,9 @@ LDB 0x000000
 LDC 0x0000ff
 LDD 0x00ff00
 LDA 0x0000ff
+; comment again
 SUB 1
+; comment
 MACRO ADDB 1
-JNZ 5
+JNZ 6
 HLT

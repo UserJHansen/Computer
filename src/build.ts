@@ -12,9 +12,24 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
         if (err) {
           return console.log(err);
         }
-        const instructions = [];
+
+        var acc = 1;
+        const accmap = [
+            -1,
+            ...file.split(/(?:\r\n)|\r|\n/).map((instruction) => {
+              const parsed = parseInstruction(instruction);
+              if (parsed === undefined || parsed === null) {
+                acc++;
+              } else if (parsed.length || 0 > 4) {
+                acc -= parsed.length / 4 - 1;
+              }
+              return acc;
+            }),
+          ],
+          instructions = [],
+          vars: { [variable: string]: string } = {};
         for (const line of file.split(/(?:\r\n)|\r|\n/)) {
-          const command = parseInstruction(line);
+          const command = parseInstruction(line, vars, accmap);
 
           if (!command) continue;
           instructions.push(command);
@@ -35,6 +50,7 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
           binary,
           () => {
             console.log(filename + " Build successful!");
+            generateDecoded(filename.replace(".asm", ".bin"));
           }
         );
       });
@@ -45,5 +61,3 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
     }
   }
 });
-
-generateDecoded();

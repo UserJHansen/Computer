@@ -19,7 +19,10 @@ export function getInstruction(instruction: string): InstructionMap {
   return InstructionMap.NOP;
 }
 
-export function parseNumber(int: string): number {
+export function parseNumber(
+  int: string,
+  vars: { [variable: string]: string }
+): number {
   var radix = 10;
 
   if (int.startsWith("0b")) {
@@ -28,6 +31,8 @@ export function parseNumber(int: string): number {
   } else if (int.startsWith("0x")) {
     int = int.slice(2);
     radix = 16;
+  } else if (int.startsWith("$")) {
+    int = vars[int.slice(1)] || "0";
   }
 
   return parseInt(int, radix);

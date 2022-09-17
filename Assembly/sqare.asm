@@ -1,0 +1,3 @@
+LDA 12
+SQR
+HLT

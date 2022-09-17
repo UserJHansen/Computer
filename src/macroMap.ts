@@ -7,6 +7,7 @@ const macroMap = {
     instructions: [
       {
         instruction: InstructionMap.SWP,
+        data: "0b00000001",
       },
       {
         instruction: InstructionMap.ADD,
@@ -14,6 +15,7 @@ const macroMap = {
       },
       {
         instruction: InstructionMap.SWP,
+        data: "0b00000001",
       },
     ],
   },
