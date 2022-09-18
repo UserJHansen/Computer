@@ -1,25 +1,21 @@
 ; Prime sort (Hopefully)
 ; A - Just for math
-; B - Remainder
-; C - Loop iteration
+; B - Loop iteration
+; C - 
 ; D - 
 SET number 7
+LDB 2 The loop variable
 LDA $number Initialise A with the number to check
-LDC 2 The loop variable
-JMP 13 make sure we don't move it on the first iteration
-ADD 255
-MV A C Move the loop var back to c
-LDA $number
-MV C B
-DIVRB
-MV B A
-JNZ 18
-JMP 25
-MV C A
-ADD 1
-SUB 255
-JNZ 10
+MOD
+JNZ 12
+JMP 15
+MACRO ADDB 1
+JMP 8
 ; 0 is prime, anything else is composite
+LDA $number
+JEQ 18
 HLT
-
-HLT
+LDA 0xffffff
+LDB 0xffffff
+LDC 0xffffff
+LDD 0xffffff

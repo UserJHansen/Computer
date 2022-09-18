@@ -9,6 +9,7 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
   for (const filename of filenames) {
     try {
       fs.readFile("Assembly/" + filename, "utf8", function (err, file) {
+        file += "\nHLT";
         if (err) {
           return console.log(err);
         }

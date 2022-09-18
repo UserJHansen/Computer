@@ -1,5 +1,4 @@
 import fs from "fs";
-import glob from "glob";
 import { InstructionMap } from "./types";
 
 export default function generateDecoded(filename: string) {
@@ -26,8 +25,13 @@ export default function generateDecoded(filename: string) {
             out += "0x";
             out += dataout.toString(16);
           } else if (InstructionMap[data] === "MV") {
-            out += "0b";
-            out += dataout.toString(2).padStart(8, "0");
+            const registers = ["A", "B", "C", "D"],
+              from = registers[Math.log2( dataout & 0xf)],
+              to = registers[Math.log2((dataout & 0xf0) >> 4)];
+
+            out += from + " " + to;
+          } else if (InstructionMap[data][0]==="J") {
+            out += dataout+1;
           } else {
             out += dataout;
           }

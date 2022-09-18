@@ -22,6 +22,7 @@ export enum InstructionMap {
   DIVRD,
   MULBIGD,
   JMP = 0b00100000,
+  JZ,
   JNZ,
   JG,
   JGE,

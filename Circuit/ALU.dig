@@ -73,15 +73,19 @@
       <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>Input Splitting</string>
           <string>4</string>
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>1,3</string>
+          <string>3,1</string>
         </entry>
       </elementAttributes>
-      <pos x="2020" y="320"/>
+      <pos x="2020" y="340"/>
     </visualElement>
     <visualElement>
       <elementName>Multiplexer</elementName>
@@ -414,7 +418,7 @@
           <int>4</int>
         </entry>
       </elementAttributes>
-      <pos x="2000" y="320"/>
+      <pos x="2000" y="340"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -536,16 +540,12 @@
       <p2 x="2160" y="0"/>
     </wire>
     <wire>
-      <p1 x="2000" y="320"/>
-      <p2 x="2020" y="320"/>
+      <p1 x="2140" y="320"/>
+      <p2 x="2160" y="320"/>
     </wire>
     <wire>
       <p1 x="2040" y="320"/>
       <p2 x="2060" y="320"/>
-    </wire>
-    <wire>
-      <p1 x="2140" y="320"/>
-      <p2 x="2160" y="320"/>
     </wire>
     <wire>
       <p1 x="2140" y="260"/>
@@ -658,6 +658,10 @@
     <wire>
       <p1 x="1660" y="340"/>
       <p2 x="1680" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="2000" y="340"/>
+      <p2 x="2020" y="340"/>
     </wire>
     <wire>
       <p1 x="1680" y="340"/>
@@ -1008,12 +1012,12 @@
       <p2 x="2260" y="120"/>
     </wire>
     <wire>
-      <p1 x="2040" y="340"/>
-      <p2 x="2040" y="480"/>
-    </wire>
-    <wire>
       <p1 x="2040" y="120"/>
       <p2 x="2040" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="2040" y="340"/>
+      <p2 x="2040" y="480"/>
     </wire>
     <wire>
       <p1 x="1880" y="-160"/>

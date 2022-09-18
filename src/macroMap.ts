@@ -10,7 +10,7 @@ const macroMap = {
         data: "0b00000001",
       },
       {
-        instruction: InstructionMap.ADD,
+        instruction: InstructionMap.ADDD,
         data: "${0}",
       },
       {

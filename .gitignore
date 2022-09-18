@@ -1,3 +1,4 @@
 *.reverse.asm
 *.map
 *.js
+node_modules

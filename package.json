@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.7.18"
+  },
+  "dependencies": {
+    "glob": "^8.0.3"
+  }
+}

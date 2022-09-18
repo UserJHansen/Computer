@@ -1,5 +1,5 @@
 import Instruction from "./Instruction";
-import { BinaryElement, Type } from "./types";
+import { BinaryElement } from "./types";
 
 export default class Macro implements BinaryElement {
   name: string;
