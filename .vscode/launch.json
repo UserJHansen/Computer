@@ -5,6 +5,34 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "comp",
+      "request": "launch",
+      "name": "Ask for file name",
+      "program": "${command:AskForProgramName}",
+      "stopOnEntry": true,
+      "trace": true
+    },
+    {
+      "type": "comp",
+      "request": "launch",
+      "name": "Current File",
+      "program": "${file}",
+      "stopOnEntry": true,
+      "trace": true
+    },
+    {
+      "name": "Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "${workspaceFolder}"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "preLaunchTask": "npm: watch"
+      // "preLaunchTask": "npm: watch"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",

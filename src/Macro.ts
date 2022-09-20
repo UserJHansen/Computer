@@ -4,16 +4,20 @@ import { BinaryElement } from "./types";
 export default class Macro implements BinaryElement {
   name: string;
   instructions: Instruction[];
+  bitness: number;
 
   constructor({
     name,
     instructions,
+    bitness,
   }: {
     name: string;
     instructions: Instruction[];
+    bitness: number;
   }) {
     this.name = name;
     this.instructions = instructions;
+    this.bitness = bitness;
   }
   toArray(): Uint8Array {
     const arr = new Uint8Array(this.length);
@@ -26,6 +30,6 @@ export default class Macro implements BinaryElement {
   }
 
   get length() {
-    return this.instructions.length * 4;
+    return this.instructions.length * (this.bitness / 8);
   }
 }

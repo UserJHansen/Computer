@@ -3,9 +3,9 @@
 ; B - Loop iteration
 ; C - 
 ; D - 
-SET number 7
-LDB 2 The loop variable
-LDA $number Initialise A with the number to check
+SET $number 7
+LDB 2 ; The loop variable
+LDA $number ; Initialise A with the number to check
 MOD
 JNZ 12
 JMP 15

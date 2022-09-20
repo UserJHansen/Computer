@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Computer Assembly",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#registers"
+    },
+    {
+      "include": "#labels"
+    },
+    {
+      "include": "#instructions"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional",
+          "match": "\\b(JMP|JZ|JNZ|JG|JGE|JL|JLE|JEQ|JNEQ|JC|JNC)\\b"
+        },
+        {
+          "name": "keyword.operator.new",
+          "match": "^(SET|MACRO|LDA|LDB|LDC|LDD|MV|SWP|SQR|ADD|SUB|MUL|DIV|MOD|DIVR|MULBIG|SQRBIG|ADDD|SUBD|MULD|DIVD|MODD|DIVRD|MULBIGD|AND|OR|XOR|NOT|SHL|SHR|ROL|ROR|ANDD|ORD|XORD|NOTD|SHLD|SHRD|ROLD|RORD|PUSH|POP|PUT|MOVSP|HLT)\\b"
+        },
+        {
+          "name": "variable.name.compasm",
+          "match": "\\$([A-z]+)\\b"
+        },
+        {
+          "name": "comment.line",
+          "match": ";.*$"
+        },
+        {
+          "name": "constant.numeric",
+          "match": "\\b(0x[0-9a-fA-F]+|0b[01]+|[0-9]+)\\b"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.compasm"
+}

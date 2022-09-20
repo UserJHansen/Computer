@@ -12,6 +12,10 @@
       </awt-color>
     </entry>
     <entry>
+      <string>isGeneric</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
       <string>Width</string>
       <int>6</int>
     </entry>
@@ -26,7 +30,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="40" y="720"/>
@@ -40,7 +48,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="40" y="800"/>
@@ -54,7 +66,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="760"/>
@@ -68,7 +84,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="40" y="880"/>
@@ -82,7 +102,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="840"/>
@@ -96,7 +120,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="920"/>
@@ -110,7 +138,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="1020"/>
@@ -124,7 +156,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="40" y="980"/>
@@ -138,7 +174,11 @@
         </entry>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="-80" y="840"/>
@@ -169,7 +209,12 @@
     </visualElement>
     <visualElement>
       <elementName>MV.dig</elementName>
-      <elementAttributes/>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := args.bits;</string>
+        </entry>
+      </elementAttributes>
       <pos x="300" y="840"/>
     </visualElement>
     <visualElement>
@@ -195,7 +240,11 @@
       <elementAttributes>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="720"/>
@@ -205,7 +254,11 @@
       <elementAttributes>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="800"/>
@@ -215,7 +268,11 @@
       <elementAttributes>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="880"/>
@@ -225,15 +282,34 @@
       <elementAttributes>
         <entry>
           <string>Bits</string>
-          <int>24</int>
+          <int>32</int>
+        </entry>
+        <entry>
+          <string>generic</string>
+          <string>this.Bits = args.bits;</string>
         </entry>
       </elementAttributes>
       <pos x="60" y="980"/>
     </visualElement>
     <visualElement>
       <elementName>SWP.dig</elementName>
-      <elementAttributes/>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := args.bits;</string>
+        </entry>
+      </elementAttributes>
       <pos x="480" y="840"/>
+    </visualElement>
+    <visualElement>
+      <elementName>GenericInitCode</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := 24;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="420" y="720"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -502,5 +578,17 @@
       <p2 x="220" y="1040"/>
     </wire>
   </wires>
-  <measurementOrdering/>
+  <measurementOrdering>
+    <string>A</string>
+    <string>B</string>
+    <string>C</string>
+    <string>D</string>
+    <string>REGA</string>
+    <string>REGB</string>
+    <string>REGC</string>
+    <string>REGD</string>
+    <string>Data</string>
+    <string>Enable</string>
+    <string>Instruction</string>
+  </measurementOrdering>
 </circuit>

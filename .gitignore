@@ -2,3 +2,8 @@
 *.map
 *.js
 node_modules
+out
+dist
+comp-debug.txt
+*.vsix
+.DS_Store

@@ -1,12 +1,12 @@
 import { InstructionMap, safeNumberT } from "./types";
 
-export function safeNumber(i: number): safeNumberT {
-  if (i >= 0 && i < 2 ** 24) {
+export function safeNumber(i: number, bitness: number): safeNumberT {
+  if (i >= 0 && i < 2 ** bitness) {
     return i;
   }
   console.error(
     "Bad data, it should be above 0 and below",
-    2 ** 24,
+    2 ** bitness,
     "Number: ",
     i
   );
@@ -14,8 +14,9 @@ export function safeNumber(i: number): safeNumberT {
 }
 
 export function getInstruction(instruction: string): InstructionMap {
-  if (instruction in InstructionMap)
+  if (instruction in InstructionMap) {
     return InstructionMap[instruction as keyof typeof InstructionMap];
+  }
   return InstructionMap.NOP;
 }
 

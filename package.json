@@ -1,9 +1,227 @@
 {
-  "devDependencies": {
-    "@types/glob": "^8.0.0",
-    "@types/node": "^18.7.18"
+  "name": "comp-debug",
+  "displayName": "Comp Debug",
+  "version": "0.0.1",
+  "publisher": "comp-debug",
+  "description": "Allows you to debug Compasm.",
+  "engines": {
+    "vscode": "^1.66.0"
   },
-  "dependencies": {
-    "glob": "^8.0.3"
+  "icon": "Extension-Data/comp-debug-icon.png",
+  "categories": [
+    "Debuggers"
+  ],
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UserJHansen/Computer.git"
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --tsconfig=./tsconfig.json --external:vscode --format=cjs --platform=node --outfile=dist/extension.js",
+    "watch": "concurrently \"npx tsc --watch\" \"npm run -S esbuild-base -- --sourcemap --sources-content=false --watch\"",
+    "esbuild-web": "esbuild ./src/web-extension.ts --bundle --tsconfig=./tsconfig.json --external:vscode --format=cjs --platform=browser --outfile=dist/web-extension.js",
+    "watch-web": "npm run -S esbuild-web -- --sourcemap --sources-content=false --watch",
+    "build": "npm run -S esbuild-base -- --sourcemap --sources-content=false && npm run -S esbuild-web -- --sourcemap --sources-content=false",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "publish-pre-release": "vsce publish --pre-release",
+    "vscode:prepublish": "rimraf dist && npm run -S esbuild-base -- --minify && npm run -S esbuild-web -- --minify",
+    "test": "npm run typecheck"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^14.18.29",
+    "@types/vscode": "^1.66.0",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "@vscode/debugadapter": "^1.56.0",
+    "@vscode/debugadapter-testsupport": "^1.56.0",
+    "await-notify": "^1.0.1",
+    "base64-js": "^1.5.1",
+    "concurrently": "^7.4.0",
+    "esbuild": "^0.14.29",
+    "eslint": "^8.12.0",
+    "events": "^3.3.0",
+    "glob": "^7.2.3",
+    "mocha": "^9.2.2",
+    "path-browserify": "^1.0.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.3",
+    "url": "^0.11.0",
+    "vsce": "^2.7.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onDebugResolve:compasm",
+    "onDebugDynamicConfigurations:compasm",
+    "onCommand:extension.comp-debug.getProgramName",
+    "onCommand:extension.comp-debug.runEditorContents",
+    "onCommand:extension.comp-debug.debugEditorContents"
+  ],
+  "workspaceTrust": {
+    "request": "never"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "compasm",
+        "aliases": [
+          "Computer Assembly",
+          "compasm"
+        ],
+        "extensions": [
+          ".asm"
+        ],
+        "configuration": "./Extension-Data/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "compasm",
+        "scopeName": "source.compasm",
+        "path": "./Extension-Data/compasm.tmLanguage.json"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "extension.comp-debug.runEditorContents",
+          "when": "resourceLangId == compasm",
+          "group": "navigation@1"
+        },
+        {
+          "command": "extension.comp-debug.debugEditorContents",
+          "when": "resourceLangId == compasm",
+          "group": "navigation@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "extension.comp-debug.debugEditorContents",
+          "when": "resourceLangId == compasm"
+        },
+        {
+          "command": "extension.comp-debug.runEditorContents",
+          "when": "resourceLangId == compasm"
+        }
+      ],
+      "debug/variables/context": [
+        {
+          "command": "extension.comp-debug.toggleFormatting",
+          "when": "debugType == 'compasm' && debugProtocolVariableMenuContext == 'simple'"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "extension.comp-debug.debugEditorContents",
+        "title": "Debug File",
+        "category": "Comp Debug",
+        "enablement": "!inDebugMode",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "extension.comp-debug.runEditorContents",
+        "title": "Run File",
+        "category": "Comp Debug",
+        "enablement": "!inDebugMode",
+        "icon": "$(play)"
+      },
+      {
+        "command": "extension.comp-debug.toggleFormatting",
+        "title": "Toggle between decimal and hex formatting"
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "compasm"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "comp",
+        "languages": [
+          "compasm"
+        ],
+        "label": "Comp Debug",
+        "program": "./out/debugAdapter.js",
+        "runtime": "node",
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Absolute path to a text file.",
+                "default": "${command:AskForProgramName}"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "Automatically stop after launch.",
+                "default": true
+              },
+              "trace": {
+                "type": "boolean",
+                "description": "Enable logging of the Debug Adapter Protocol.",
+                "default": true
+              }
+            }
+          },
+          "attach": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Absolute path to a text file.",
+                "default": "${command:AskForProgramName}"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "Automatically stop after attach.",
+                "default": true
+              },
+              "trace": {
+                "type": "boolean",
+                "description": "Enable logging of the Debug Adapter Protocol.",
+                "default": true
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "comp",
+            "request": "launch",
+            "name": "Ask for file name",
+            "program": "${command:AskForProgramName}",
+            "stopOnEntry": true
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "Comp Debug: Launch",
+            "description": "A new configuration for 'debugging' a user selected compasm file.",
+            "body": {
+              "type": "comp",
+              "request": "launch",
+              "name": "Ask for file name",
+              "program": "\"${command:AskForProgramName}\"",
+              "stopOnEntry": true
+            }
+          }
+        ],
+        "variables": {
+          "AskForProgramName": "extension.comp-debug.getProgramName"
+        }
+      }
+    ]
   }
 }

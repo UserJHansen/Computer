@@ -1,9 +1,9 @@
-import fs from "fs";
+import * as fs from "fs";
 import { InstructionMap } from "./types";
 
 export default function generateDecoded(filename: string) {
   try {
-    fs.readFile("out/" + filename, function (err, file) {
+    fs.readFile("bin/" + filename, function (err, file) {
       if (err) {
         return console.log(err);
       }
@@ -26,12 +26,12 @@ export default function generateDecoded(filename: string) {
             out += dataout.toString(16);
           } else if (InstructionMap[data] === "MV") {
             const registers = ["A", "B", "C", "D"],
-              from = registers[Math.log2( dataout & 0xf)],
+              from = registers[Math.log2(dataout & 0xf)],
               to = registers[Math.log2((dataout & 0xf0) >> 4)];
 
             out += from + " " + to;
-          } else if (InstructionMap[data][0]==="J") {
-            out += dataout+1;
+          } else if (InstructionMap[data][0] === "J") {
+            out += dataout + 1;
           } else {
             out += dataout;
           }

@@ -1,10 +1,16 @@
-import fs from "fs";
-import glob from "glob";
+import * as fs from "fs";
+import * as glob from "glob";
 import generateDecoded from "./decodebin";
+import Instruction from "./Instruction";
+import Macro from "./Macro";
 import parseInstruction from "./parseInstruction";
 
+export const bitness = 32;
+
 glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
-  if (err) console.error(err);
+  if (err) {
+    console.error(err);
+  }
 
   for (const filename of filenames) {
     try {
@@ -18,21 +24,23 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
         const accmap = [
             -1,
             ...file.split(/(?:\r\n)|\r|\n/).map((instruction) => {
-              const parsed = parseInstruction(instruction);
+              const parsed = parseInstruction(instruction, bitness);
               if (parsed === undefined || parsed === null) {
                 acc++;
-              } else if (parsed.length || 0 > 4) {
-                acc -= parsed.length / 4 - 1;
+              } else if (parsed.length || 0 > bitness / 8) {
+                acc -= parsed.length / bitness / 8 + 1 - 1;
               }
               return acc;
             }),
           ],
-          instructions = [],
+          instructions: (Instruction | Macro)[] = [],
           vars: { [variable: string]: string } = {};
         for (const line of file.split(/(?:\r\n)|\r|\n/)) {
-          const command = parseInstruction(line, vars, accmap);
+          const command = parseInstruction(line, bitness, vars, accmap);
 
-          if (!command) continue;
+          if (!command) {
+            continue;
+          }
           instructions.push(command);
         }
 
@@ -47,7 +55,7 @@ glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
         }
 
         fs.writeFile(
-          process.cwd() + "\\out\\" + filename.replace(".asm", ".bin"),
+          process.cwd() + "\\bin\\" + filename.replace(".asm", ".bin"),
           binary,
           () => {
             console.log(filename + " Build successful!");

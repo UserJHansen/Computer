@@ -11,6 +11,8 @@ Group 4: Stack
 Group 5: I/O
 Group 6: 
 
+Group 15: Special
+
 To be implemented: 
 - Bitwise
 - Stack
@@ -73,16 +75,16 @@ To be implemented:
 3 - 51 - 00110011 - NOT - A = ~A
 3 - 52 - 00110100 - SHL - A = A << B
 3 - 53 - 00110101 - SHR - A = A >> B
-3 - 54 - 00110110 - ROL - A = A << B | A >> (24-B)
-3 - 55 - 00110111 - ROR - A = A >> B | A << (24-B)
+3 - 54 - 00110110 - ROL - A = A << B | A >> (32-B)
+3 - 55 - 00110111 - ROR - A = A >> B | A << (32-B)
 3 - 56 - 00111000 - ANDD - A = A & Data
 3 - 57 - 00111001 - ORD - A = A | Data
 3 - 58 - 00111010 - XORD - A = A ^ Data
 3 - 59 - 00111011 - NOTD - A = ~A
 3 - 60 - 00111100 - SHLD - A = A << Data
 3 - 61 - 00111101 - SHRD - A = A >> Data
-3 - 62 - 00111110 - ROLD - A = A << Data | A >> (24-Data)
-3 - 63 - 00111111 - RORD - A = A >> Data | A << (24-Data)
+3 - 62 - 00111110 - ROLD - A = A << Data | A >> (32-Data)
+3 - 63 - 00111111 - RORD - A = A >> Data | A << (32-Data)
 
 4 - 64 - 01000000 - PUSH - Push A to stack
 4 - 65 - 01000001 - POP - Pop from stack to A
@@ -118,4 +120,6 @@ To be implemented:
 5 - 94 - 01011110 -
 5 - 95 - 01011111 -
 [...]
-15 - 254 - 1111111 - Halt
+15 - 252 - 11111100 - BRK - Call interrupt
+15 - 253 - 11111101 - NOP - No operation
+15 - 254 - 1111111 - HLT - Halt
