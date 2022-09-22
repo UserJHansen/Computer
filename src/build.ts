@@ -88,7 +88,7 @@ if (require.main === module) {
           if (err) {
             return console.log(err);
           }
-          const bin = build(file);
+          const bin = build(file.toString());
           fs.writeFile(
             process.cwd() + "\\bin\\" + filename.replace(".asm", ".bin"),
             bin,

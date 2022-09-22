@@ -55,8 +55,6 @@ export class CompDebugSession extends LoggingDebugSession {
   private _valuesInHex = false;
   private _useInvalidatedEvent = false;
 
-  private _addressesInHex = true;
-
   /**
    * Creates a new debug adapter that is used for one debug session.
    * We configure the default implementation of a debug adapter here.
@@ -708,12 +706,6 @@ export class CompDebugSession extends LoggingDebugSession {
       return n;
     }
     return value;
-  }
-
-  private formatAddress(x: number, pad = 8) {
-    return this._addressesInHex
-      ? "0x" + x.toString(16).padStart(8, "0")
-      : x.toString(10);
   }
 
   private formatNumber(x: number) {
