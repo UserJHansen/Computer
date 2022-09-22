@@ -86,7 +86,7 @@
           <string>CTR</string>
         </entry>
       </elementAttributes>
-      <pos x="2460" y="1180"/>
+      <pos x="2520" y="1180"/>
     </visualElement>
     <visualElement>
       <elementName>PullDown</elementName>
@@ -496,6 +496,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <elementName>Probe</elementName>
       <elementAttributes>
         <entry>
+          <string>Label</string>
+          <string>CTR</string>
+        </entry>
+        <entry>
           <string>intFormat</string>
           <intFormat>bin</intFormat>
         </entry>
@@ -514,7 +518,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>A</string>
         </entry>
       </elementAttributes>
-      <pos x="1180" y="660"/>
+      <pos x="1180" y="680"/>
     </visualElement>
     <visualElement>
       <elementName>Probe</elementName>
@@ -524,7 +528,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <intFormat>bin</intFormat>
         </entry>
       </elementAttributes>
-      <pos x="1200" y="660"/>
+      <pos x="1200" y="680"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -536,30 +540,6 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
         <entry>
           <string>NetName</string>
           <string>B</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1180" y="700"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Probe</elementName>
-      <elementAttributes>
-        <entry>
-          <string>intFormat</string>
-          <intFormat>bin</intFormat>
-        </entry>
-      </elementAttributes>
-      <pos x="1200" y="700"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>C</string>
         </entry>
       </elementAttributes>
       <pos x="1180" y="740"/>
@@ -583,10 +563,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
         </entry>
         <entry>
           <string>NetName</string>
-          <string>D</string>
+          <string>C</string>
         </entry>
       </elementAttributes>
-      <pos x="1180" y="780"/>
+      <pos x="1180" y="800"/>
     </visualElement>
     <visualElement>
       <elementName>Probe</elementName>
@@ -596,7 +576,31 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <intFormat>bin</intFormat>
         </entry>
       </elementAttributes>
-      <pos x="1200" y="780"/>
+      <pos x="1200" y="800"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>D</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1180" y="860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Probe</elementName>
+      <elementAttributes>
+        <entry>
+          <string>intFormat</string>
+          <intFormat>bin</intFormat>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="860"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -616,6 +620,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <elementName>Probe</elementName>
       <elementAttributes>
         <entry>
+          <string>Label</string>
+          <string>Instruction</string>
+        </entry>
+        <entry>
           <string>intFormat</string>
           <intFormat>bin</intFormat>
         </entry>
@@ -634,17 +642,21 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>Data</string>
         </entry>
       </elementAttributes>
-      <pos x="1680" y="660"/>
+      <pos x="1680" y="680"/>
     </visualElement>
     <visualElement>
       <elementName>Probe</elementName>
       <elementAttributes>
         <entry>
+          <string>Label</string>
+          <string>Data</string>
+        </entry>
+        <entry>
           <string>intFormat</string>
           <intFormat>bin</intFormat>
         </entry>
       </elementAttributes>
-      <pos x="1700" y="660"/>
+      <pos x="1700" y="680"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -663,6 +675,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <visualElement>
       <elementName>Probe</elementName>
       <elementAttributes>
+        <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
         <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
@@ -688,6 +704,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <elementName>Probe</elementName>
       <elementAttributes>
         <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
         </entry>
@@ -711,6 +731,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <visualElement>
       <elementName>Probe</elementName>
       <elementAttributes>
+        <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
         <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
@@ -736,6 +760,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <elementName>Probe</elementName>
       <elementAttributes>
         <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
         </entry>
@@ -759,6 +787,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <visualElement>
       <elementName>Probe</elementName>
       <elementAttributes>
+        <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
         <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
@@ -784,6 +816,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <elementName>Probe</elementName>
       <elementAttributes>
         <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
+        <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
         </entry>
@@ -807,6 +843,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <visualElement>
       <elementName>Probe</elementName>
       <elementAttributes>
+        <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
         <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
@@ -1174,7 +1214,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>Carry</string>
         </entry>
       </elementAttributes>
-      <pos x="1180" y="820"/>
+      <pos x="1180" y="920"/>
     </visualElement>
     <visualElement>
       <elementName>Probe</elementName>
@@ -1184,7 +1224,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <intFormat>bin</intFormat>
         </entry>
       </elementAttributes>
-      <pos x="1200" y="820"/>
+      <pos x="1200" y="920"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1203,6 +1243,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <visualElement>
       <elementName>Probe</elementName>
       <elementAttributes>
+        <entry>
+          <string>addValueToGraph</string>
+          <boolean>false</boolean>
+        </entry>
         <entry>
           <string>intFormat</string>
           <intFormat>dec</intFormat>
@@ -1313,6 +1357,16 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       </elementAttributes>
       <pos x="560" y="200"/>
     </visualElement>
+    <visualElement>
+      <elementName>Probe</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2260" y="1060"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -1400,10 +1454,6 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="2020" y="200"/>
     </wire>
     <wire>
-      <p1 x="1180" y="780"/>
-      <p2 x="1200" y="780"/>
-    </wire>
-    <wire>
       <p1 x="1180" y="1100"/>
       <p2 x="1200" y="1100"/>
     </wire>
@@ -1484,14 +1534,6 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="2060" y="20"/>
     </wire>
     <wire>
-      <p1 x="1180" y="660"/>
-      <p2 x="1200" y="660"/>
-    </wire>
-    <wire>
-      <p1 x="1680" y="660"/>
-      <p2 x="1700" y="660"/>
-    </wire>
-    <wire>
       <p1 x="680" y="980"/>
       <p2 x="700" y="980"/>
     </wire>
@@ -1502,6 +1544,14 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <wire>
       <p1 x="1020" y="340"/>
       <p2 x="1140" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="920"/>
+      <p2 x="1200" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="2220" y="920"/>
+      <p2 x="2260" y="920"/>
     </wire>
     <wire>
       <p1 x="1580" y="280"/>
@@ -1516,16 +1566,20 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1940" y="280"/>
     </wire>
     <wire>
-      <p1 x="2220" y="920"/>
-      <p2 x="2260" y="920"/>
-    </wire>
-    <wire>
       <p1 x="2280" y="600"/>
       <p2 x="2300" y="600"/>
     </wire>
     <wire>
       <p1 x="2320" y="1240"/>
       <p2 x="2340" y="1240"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="860"/>
+      <p2 x="1200" y="860"/>
+    </wire>
+    <wire>
+      <p1 x="2380" y="860"/>
+      <p2 x="2400" y="860"/>
     </wire>
     <wire>
       <p1 x="1020" y="220"/>
@@ -1549,15 +1603,19 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </wire>
     <wire>
       <p1 x="2400" y="1180"/>
-      <p2 x="2460" y="1180"/>
+      <p2 x="2520" y="1180"/>
     </wire>
     <wire>
-      <p1 x="2380" y="860"/>
-      <p2 x="2400" y="860"/>
+      <p1 x="1180" y="800"/>
+      <p2 x="1200" y="800"/>
     </wire>
     <wire>
       <p1 x="1820" y="160"/>
       <p2 x="1840" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="740"/>
+      <p2 x="1200" y="740"/>
     </wire>
     <wire>
       <p1 x="1180" y="1060"/>
@@ -1572,6 +1630,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="2240" y="1060"/>
     </wire>
     <wire>
+      <p1 x="2240" y="1060"/>
+      <p2 x="2260" y="1060"/>
+    </wire>
+    <wire>
       <p1 x="1440" y="100"/>
       <p2 x="1480" y="100"/>
     </wire>
@@ -1584,8 +1646,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1140" y="100"/>
     </wire>
     <wire>
-      <p1 x="1180" y="740"/>
-      <p2 x="1200" y="740"/>
+      <p1 x="1680" y="680"/>
+      <p2 x="1700" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="680"/>
+      <p2 x="1200" y="680"/>
     </wire>
     <wire>
       <p1 x="2440" y="1000"/>
@@ -1688,10 +1754,6 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1200" y="1140"/>
     </wire>
     <wire>
-      <p1 x="1180" y="820"/>
-      <p2 x="1200" y="820"/>
-    </wire>
-    <wire>
       <p1 x="1900" y="120"/>
       <p2 x="1920" y="120"/>
     </wire>
@@ -1726,10 +1788,6 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <wire>
       <p1 x="1020" y="380"/>
       <p2 x="1140" y="380"/>
-    </wire>
-    <wire>
-      <p1 x="1180" y="700"/>
-      <p2 x="1200" y="700"/>
     </wire>
     <wire>
       <p1 x="1680" y="1020"/>

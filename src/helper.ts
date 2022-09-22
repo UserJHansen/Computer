@@ -1,6 +1,6 @@
-import { InstructionMap, safeNumberT } from "./types";
+import { InstructionMap, SafeNumberT } from "./types";
 
-export function safeNumber(i: number, bitness: number): safeNumberT {
+export function safeNumber(i: number, bitness: number): SafeNumberT {
   if (i >= 0 && i < 2 ** bitness) {
     return i;
   }

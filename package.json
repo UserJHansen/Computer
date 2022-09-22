@@ -223,5 +223,8 @@
         }
       }
     ]
+  },
+  "dependencies": {
+    "tmp-promise": "^3.0.3"
   }
 }

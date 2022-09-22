@@ -4,13 +4,13 @@ import Macro from "./Macro";
 import macroMap from "./macroMap";
 import { InstructionMap } from "./types";
 
-const exceptions = ["MV", "SWP"];
-
 export default function parseInstruction(
   text: string,
   bitness: number,
+  line: number,
+  labels: { [label: string]: number } = {},
   vars: { [variable: string]: string } = {},
-  jmpoffset: number[] = []
+  jmpmap: number[] = []
 ) {
   const parts = text.split(" ");
   if (parts.length === 0 || parts[0] === ";" || parts[0] === "") {
@@ -18,12 +18,18 @@ export default function parseInstruction(
   }
   if (parts[0] in InstructionMap) {
     var [instruction, _data] = parts,
-      data = exceptions.includes(instruction)
-        ? 0
+      data: number | string = isNaN(parseNumber(_data || "0", vars))
+        ? _data
         : safeNumber(parseNumber(_data || "0", vars), bitness);
 
-    if (instruction === "JMP" || instruction === "JNZ") {
-      data -= jmpoffset[data];
+    if (instruction[0] === "J") {
+      if (typeof data === "string" && data[0] === "+") {
+        data = jmpmap[line + 1 + parseInt(data.slice(1))];
+      } else if (typeof data === "string" && data in labels) {
+        data = labels[data];
+      } else if (typeof data === "number") {
+        data = jmpmap[data];
+      }
     }
 
     if (instruction === "MV") {

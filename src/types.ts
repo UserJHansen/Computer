@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export enum InstructionMap {
   LDA,
   LDB,
@@ -52,12 +53,9 @@ export enum InstructionMap {
   NOP = 0b11100000,
   HLT = 0b11111111,
 }
-export enum Type {
-  Command,
-  Macro,
-}
+/* eslint-enable @typescript-eslint/naming-convention */
 
-export type safeNumberT = Partial<number>;
+export type SafeNumberT = Partial<number>;
 
 export interface BinaryElement {
   length: number;

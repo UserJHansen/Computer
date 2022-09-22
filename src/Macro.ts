@@ -30,6 +30,6 @@ export default class Macro implements BinaryElement {
   }
 
   get length() {
-    return this.instructions.length * (this.bitness / 8);
+    return this.instructions.length * (this.bitness / 8 + 1);
   }
 }

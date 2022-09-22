@@ -16,7 +16,6 @@ import {
   CancellationToken,
 } from "vscode";
 import { CompDebugSession } from "./debugAdapter";
-import { FileAccessor } from "./compRuntime";
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
@@ -254,39 +253,12 @@ class CompConfigurationProvider implements vscode.DebugConfigurationProvider {
   }
 }
 
-export const workspaceFileAccessor: FileAccessor = {
-  isWindows: false,
-  async readFile(path: string): Promise<Uint8Array> {
-    let uri: vscode.Uri;
-    try {
-      uri = pathToUri(path);
-    } catch (e) {
-      return new TextEncoder().encode(`cannot read '${path}'`);
-    }
-
-    return await vscode.workspace.fs.readFile(uri);
-  },
-  async writeFile(path: string, contents: Uint8Array) {
-    await vscode.workspace.fs.writeFile(pathToUri(path), contents);
-  },
-};
-
-function pathToUri(path: string) {
-  try {
-    return vscode.Uri.file(path);
-  } catch (e) {
-    return vscode.Uri.parse(path);
-  }
-}
-
 class InlineDebugAdapterFactory
   implements vscode.DebugAdapterDescriptorFactory
 {
   createDebugAdapterDescriptor(
     _session: vscode.DebugSession
   ): ProviderResult<vscode.DebugAdapterDescriptor> {
-    return new vscode.DebugAdapterInlineImplementation(
-      new CompDebugSession(workspaceFileAccessor)
-    );
+    return new vscode.DebugAdapterInlineImplementation(new CompDebugSession());
   }
 }

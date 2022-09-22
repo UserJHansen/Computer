@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { bitness } from "./build";
 import { InstructionMap } from "./types";
 
 export default function generateDecoded(filename: string) {
@@ -9,37 +10,36 @@ export default function generateDecoded(filename: string) {
       }
       const binary = new Uint8Array(file);
 
-      var currdata = new Uint8Array(3),
+      var currdata = new Uint8Array(bitness / 8 + 1),
         out = "";
-      for (var _byte in binary) {
-        const byte = parseInt(_byte, 10),
-          data = binary[byte];
 
-        if ((byte + 1) % 4 == 0) {
-          const dataout =
-            (currdata[0] << 16) | (currdata[1] << 8) | currdata[2];
-
-          out += InstructionMap[data];
-          out += " ";
-          if (dataout > 256) {
-            out += "0x";
-            out += dataout.toString(16);
-          } else if (InstructionMap[data] === "MV") {
-            const registers = ["A", "B", "C", "D"],
-              from = registers[Math.log2(dataout & 0xf)],
-              to = registers[Math.log2((dataout & 0xf0) >> 4)];
-
-            out += from + " " + to;
-          } else if (InstructionMap[data][0] === "J") {
-            out += dataout + 1;
-          } else {
-            out += dataout;
-          }
-          out += "\n";
-          currdata = new Uint8Array(3);
+      for (var i = 0; i < binary.length; i += bitness / 8 + 1) {
+        currdata.set(binary.subarray(i, i + bitness / 8 + 1));
+        var num = 0;
+        const instruction = InstructionMap[currdata[0]];
+        if (instruction) {
+          out += instruction + " ";
         } else {
-          currdata[byte % 4] = data;
+          out += "??? ";
         }
+        for (var j = 1; j < currdata.length; j++) {
+          num += currdata[j] << ((j - 1) * 8);
+        }
+        if (num > 256) {
+          out += "0x";
+          out += num.toString(16);
+        } else if (instruction === "MV") {
+          const registers = ["A", "B", "C", "D"],
+            from = registers[Math.log2(num & 0xf)],
+            to = registers[Math.log2((num & 0xf0) >> 4)];
+
+          out += from + " " + to;
+        } else if (instruction[0] === "J") {
+          out += num + 1;
+        } else {
+          out += num;
+        }
+        out += "\n";
       }
 
       fs.writeFile(

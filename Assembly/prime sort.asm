@@ -5,17 +5,21 @@
 ; D - 
 SET $number 7
 LDB 2 ; The loop variable
+loop:
 LDA $number ; Initialise A with the number to check
 MOD
-JNZ 12
-JMP 15
-MACRO ADDB 1
-JMP 8
+JNZ ++2
+JMP finished
+MACRO ADDB 1 
+JMP loop
 ; 0 is prime, anything else is composite
+finished:
 LDA $number
-JEQ 18
+JEQ prime
+composite:
 HLT
-LDA 0xffffff
-LDB 0xffffff
-LDC 0xffffff
-LDD 0xffffff
+prime:
+LDA 0xffffffff
+LDB 0xfffffff
+LDC 0xfffffff
+LDD 0xffffffff
