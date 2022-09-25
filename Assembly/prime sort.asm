@@ -1,9 +1,9 @@
 ; Prime sort (Hopefully)
 ; A - Just for math
 ; B - Loop iteration
-; C - 
+; C -
 ; D - 
-SET $number 7
+SET $number 9973
 LDB 2 ; The loop variable
 loop:
 LDA $number ; Initialise A with the number to check
@@ -23,3 +23,4 @@ LDA 0xffffffff
 LDB 0xfffffff
 LDC 0xfffffff
 LDD 0xffffffff
+HLT

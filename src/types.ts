@@ -49,6 +49,12 @@ export enum InstructionMap {
   SHRD,
   ROLD,
   RORD,
+  PUSH = 0b01000000,
+  PUT,
+  POP,
+  MOVSPD,
+  MOVSPA,
+  MOVSP,
 
   NOP = 0b11100000,
   HLT = 0b11111111,

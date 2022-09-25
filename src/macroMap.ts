@@ -38,6 +38,24 @@ const macroMap = {
       },
     ],
   },
+  ADDD: {
+    name: "ADDD",
+    description: "Add Data to D",
+    instructions: [
+      {
+        instruction: InstructionMap.SWP,
+        data: "2",
+      },
+      {
+        instruction: InstructionMap.ADDD,
+        data: "${0}",
+      },
+      {
+        instruction: InstructionMap.SWP,
+        data: "2",
+      },
+    ],
+  },
 };
 
 export default macroMap;

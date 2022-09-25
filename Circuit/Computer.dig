@@ -72,8 +72,12 @@
       <elementName>Clock</elementName>
       <elementAttributes>
         <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>Frequency</string>
-          <int>100</int>
+          <int>2147483647</int>
         </entry>
       </elementAttributes>
       <pos x="1980" y="1060"/>
@@ -97,10 +101,6 @@
       <elementName>ROM</elementName>
       <elementAttributes>
         <entry>
-          <string>bigEndian</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>AddrBits</string>
           <int>24</int>
         </entry>
@@ -123,7 +123,7 @@
         </entry>
         <entry>
           <string>lastDataFile</string>
-          <file>C:\Users\userj\Github\Computer\bin\jmptest.bin</file>
+          <file>C:\Users\userj\GitHub\Computer\bin\prime sort.bin</file>
         </entry>
         <entry>
           <string>autoReload</string>
@@ -1044,7 +1044,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>LDREGA</string>
         </entry>
       </elementAttributes>
-      <pos x="1940" y="260"/>
+      <pos x="1920" y="260"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1054,7 +1054,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>LDREGB</string>
         </entry>
       </elementAttributes>
-      <pos x="1940" y="280"/>
+      <pos x="1920" y="280"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1164,12 +1164,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </visualElement>
     <visualElement>
       <elementName>Or</elementName>
-      <elementAttributes>
-        <entry>
-          <string>wideShape</string>
-          <boolean>true</boolean>
-        </entry>
-      </elementAttributes>
+      <elementAttributes/>
       <pos x="1780" y="240"/>
     </visualElement>
     <visualElement>
@@ -1262,7 +1257,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>bits := args.bits;</string>
         </entry>
       </elementAttributes>
-      <pos x="2060" y="-20"/>
+      <pos x="2300" y="-20"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1272,7 +1267,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>REGA</string>
         </entry>
       </elementAttributes>
-      <pos x="2100" y="-80"/>
+      <pos x="2340" y="-80"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1282,7 +1277,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>REGB</string>
         </entry>
       </elementAttributes>
-      <pos x="2100" y="-60"/>
+      <pos x="2340" y="-60"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1306,7 +1301,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>JMP</string>
         </entry>
       </elementAttributes>
-      <pos x="2040" y="40"/>
+      <pos x="2280" y="40"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1316,7 +1311,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>LDCTR</string>
         </entry>
       </elementAttributes>
-      <pos x="2240" y="0"/>
+      <pos x="2480" y="0"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1326,7 +1321,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
           <string>JMPDST</string>
         </entry>
       </elementAttributes>
-      <pos x="2240" y="-20"/>
+      <pos x="2480" y="-20"/>
     </visualElement>
     <visualElement>
       <elementName>Demultiplexer</elementName>
@@ -1367,6 +1362,45 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       </elementAttributes>
       <pos x="2260" y="1060"/>
     </visualElement>
+    <visualElement>
+      <elementName>Stack.dig</elementName>
+      <elementAttributes>
+        <entry>
+          <string>generic</string>
+          <string>bits := args.bits;</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2040" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes/>
+      <pos x="2040" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>Stack</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2000" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>Stack</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2300" y="680"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -1403,15 +1437,15 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </wire>
     <wire>
       <p1 x="1940" y="0"/>
-      <p2 x="2000" y="0"/>
-    </wire>
-    <wire>
-      <p1 x="2220" y="0"/>
       <p2 x="2240" y="0"/>
     </wire>
     <wire>
-      <p1 x="2000" y="0"/>
-      <p2 x="2060" y="0"/>
+      <p1 x="2460" y="0"/>
+      <p2 x="2480" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="2240" y="0"/>
+      <p2 x="2300" y="0"/>
     </wire>
     <wire>
       <p1 x="2280" y="640"/>
@@ -1426,12 +1460,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1600" y="260"/>
     </wire>
     <wire>
-      <p1 x="1860" y="260"/>
-      <p2 x="1880" y="260"/>
+      <p1 x="1840" y="260"/>
+      <p2 x="1860" y="260"/>
     </wire>
     <wire>
-      <p1 x="1920" y="260"/>
-      <p2 x="1940" y="260"/>
+      <p1 x="1900" y="260"/>
+      <p2 x="1920" y="260"/>
     </wire>
     <wire>
       <p1 x="1180" y="1220"/>
@@ -1451,7 +1485,11 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </wire>
     <wire>
       <p1 x="1720" y="200"/>
-      <p2 x="2020" y="200"/>
+      <p2 x="2000" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="2000" y="200"/>
+      <p2 x="2260" y="200"/>
     </wire>
     <wire>
       <p1 x="1180" y="1100"/>
@@ -1470,16 +1508,20 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1780" y="140"/>
     </wire>
     <wire>
-      <p1 x="1980" y="-80"/>
-      <p2 x="2100" y="-80"/>
+      <p1 x="2220" y="-80"/>
+      <p2 x="2340" y="-80"/>
     </wire>
     <wire>
       <p1 x="1440" y="80"/>
       <p2 x="1460" y="80"/>
     </wire>
     <wire>
-      <p1 x="1960" y="80"/>
-      <p2 x="2060" y="80"/>
+      <p1 x="2200" y="80"/>
+      <p2 x="2300" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="2160" y="80"/>
+      <p2 x="2180" y="80"/>
     </wire>
     <wire>
       <p1 x="1460" y="80"/>
@@ -1498,16 +1540,20 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1780" y="-20"/>
     </wire>
     <wire>
+      <p1 x="2460" y="-20"/>
+      <p2 x="2480" y="-20"/>
+    </wire>
+    <wire>
       <p1 x="1940" y="-20"/>
-      <p2 x="1980" y="-20"/>
+      <p2 x="2020" y="-20"/>
+    </wire>
+    <wire>
+      <p1 x="2180" y="-20"/>
+      <p2 x="2220" y="-20"/>
     </wire>
     <wire>
       <p1 x="2220" y="-20"/>
-      <p2 x="2240" y="-20"/>
-    </wire>
-    <wire>
-      <p1 x="1980" y="-20"/>
-      <p2 x="2060" y="-20"/>
+      <p2 x="2300" y="-20"/>
     </wire>
     <wire>
       <p1 x="1440" y="20"/>
@@ -1519,7 +1565,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </wire>
     <wire>
       <p1 x="1940" y="20"/>
-      <p2 x="1960" y="20"/>
+      <p2 x="2200" y="20"/>
     </wire>
     <wire>
       <p1 x="1600" y="20"/>
@@ -1530,8 +1576,8 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1140" y="20"/>
     </wire>
     <wire>
-      <p1 x="2020" y="20"/>
-      <p2 x="2060" y="20"/>
+      <p1 x="2260" y="20"/>
+      <p2 x="2300" y="20"/>
     </wire>
     <wire>
       <p1 x="680" y="980"/>
@@ -1562,8 +1608,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1780" y="280"/>
     </wire>
     <wire>
-      <p1 x="1920" y="280"/>
-      <p2 x="1940" y="280"/>
+      <p1 x="1900" y="280"/>
+      <p2 x="1920" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="2020" y="280"/>
+      <p2 x="2040" y="280"/>
     </wire>
     <wire>
       <p1 x="2280" y="600"/>
@@ -1591,7 +1641,11 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </wire>
     <wire>
       <p1 x="1740" y="220"/>
-      <p2 x="2040" y="220"/>
+      <p2 x="1980" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1980" y="220"/>
+      <p2 x="2280" y="220"/>
     </wire>
     <wire>
       <p1 x="1440" y="220"/>
@@ -1646,12 +1700,24 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1140" y="100"/>
     </wire>
     <wire>
+      <p1 x="2000" y="100"/>
+      <p2 x="2020" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="2020" y="100"/>
+      <p2 x="2040" y="100"/>
+    </wire>
+    <wire>
       <p1 x="1680" y="680"/>
       <p2 x="1700" y="680"/>
     </wire>
     <wire>
       <p1 x="1180" y="680"/>
       <p2 x="1200" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="2280" y="680"/>
+      <p2 x="2300" y="680"/>
     </wire>
     <wire>
       <p1 x="2440" y="1000"/>
@@ -1674,8 +1740,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1620" y="40"/>
     </wire>
     <wire>
-      <p1 x="2040" y="40"/>
-      <p2 x="2060" y="40"/>
+      <p1 x="2280" y="40"/>
+      <p2 x="2300" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="2020" y="40"/>
+      <p2 x="2040" y="40"/>
     </wire>
     <wire>
       <p1 x="1760" y="40"/>
@@ -1714,8 +1784,8 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1580" y="240"/>
     </wire>
     <wire>
-      <p1 x="1880" y="240"/>
-      <p2 x="1920" y="240"/>
+      <p1 x="1860" y="240"/>
+      <p2 x="1900" y="240"/>
     </wire>
     <wire>
       <p1 x="1000" y="240"/>
@@ -1724,6 +1794,10 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     <wire>
       <p1 x="1200" y="240"/>
       <p2 x="1320" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1900" y="240"/>
+      <p2 x="2040" y="240"/>
     </wire>
     <wire>
       <p1 x="1580" y="240"/>
@@ -1739,7 +1813,7 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
     </wire>
     <wire>
       <p1 x="1860" y="180"/>
-      <p2 x="1960" y="180"/>
+      <p2 x="2200" y="180"/>
     </wire>
     <wire>
       <p1 x="1800" y="180"/>
@@ -1770,8 +1844,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1320" y="120"/>
     </wire>
     <wire>
-      <p1 x="2000" y="-60"/>
-      <p2 x="2100" y="-60"/>
+      <p1 x="2000" y="120"/>
+      <p2 x="2040" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="2240" y="-60"/>
+      <p2 x="2340" y="-60"/>
     </wire>
     <wire>
       <p1 x="1420" y="60"/>
@@ -1782,8 +1860,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1780" y="60"/>
     </wire>
     <wire>
-      <p1 x="2040" y="60"/>
-      <p2 x="2060" y="60"/>
+      <p1 x="2280" y="60"/>
+      <p2 x="2300" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="1980" y="60"/>
+      <p2 x="2040" y="60"/>
     </wire>
     <wire>
       <p1 x="1020" y="380"/>
@@ -1802,16 +1884,76 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="2420" y="1020"/>
     </wire>
     <wire>
-      <p1 x="1920" y="240"/>
-      <p2 x="1920" y="260"/>
-    </wire>
-    <wire>
       <p1 x="1920" y="100"/>
       <p2 x="1920" y="120"/>
     </wire>
     <wire>
-      <p1 x="1920" y="260"/>
-      <p2 x="1920" y="280"/>
+      <p1 x="2240" y="1060"/>
+      <p2 x="2240" y="1120"/>
+    </wire>
+    <wire>
+      <p1 x="2240" y="-60"/>
+      <p2 x="2240" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="1860" y="240"/>
+      <p2 x="1860" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="2180" y="-20"/>
+      <p2 x="2180" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="1800" y="160"/>
+      <p2 x="1800" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="1740" y="60"/>
+      <p2 x="1740" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1420" y="60"/>
+      <p2 x="1420" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="2380" y="960"/>
+      <p2 x="2380" y="1020"/>
+    </wire>
+    <wire>
+      <p1 x="2380" y="860"/>
+      <p2 x="2380" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="2320" y="1140"/>
+      <p2 x="2320" y="1200"/>
+    </wire>
+    <wire>
+      <p1 x="2000" y="120"/>
+      <p2 x="2000" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="2260" y="900"/>
+      <p2 x="2260" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="2260" y="1180"/>
+      <p2 x="2260" y="1200"/>
+    </wire>
+    <wire>
+      <p1 x="2260" y="940"/>
+      <p2 x="2260" y="960"/>
+    </wire>
+    <wire>
+      <p1 x="2260" y="20"/>
+      <p2 x="2260" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="2200" y="20"/>
+      <p2 x="2200" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="2200" y="80"/>
+      <p2 x="2200" y="180"/>
     </wire>
     <wire>
       <p1 x="1440" y="100"/>
@@ -1826,16 +1968,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1760" y="280"/>
     </wire>
     <wire>
-      <p1 x="2240" y="1060"/>
-      <p2 x="2240" y="1120"/>
+      <p1 x="2020" y="-20"/>
+      <p2 x="2020" y="40"/>
     </wire>
     <wire>
-      <p1 x="2020" y="20"/>
-      <p2 x="2020" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="1800" y="160"/>
-      <p2 x="1800" y="180"/>
+      <p1 x="2020" y="100"/>
+      <p2 x="2020" y="280"/>
     </wire>
     <wire>
       <p1 x="1000" y="0"/>
@@ -1854,24 +1992,20 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1000" y="240"/>
     </wire>
     <wire>
-      <p1 x="1960" y="20"/>
-      <p2 x="1960" y="80"/>
-    </wire>
-    <wire>
-      <p1 x="1960" y="80"/>
-      <p2 x="1960" y="180"/>
-    </wire>
-    <wire>
       <p1 x="2280" y="1100"/>
       <p2 x="2280" y="1120"/>
     </wire>
     <wire>
-      <p1 x="1740" y="60"/>
-      <p2 x="1740" y="220"/>
+      <p1 x="2280" y="60"/>
+      <p2 x="2280" y="220"/>
     </wire>
     <wire>
-      <p1 x="1420" y="60"/>
-      <p2 x="1420" y="200"/>
+      <p1 x="1900" y="240"/>
+      <p2 x="1900" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1900" y="260"/>
+      <p2 x="1900" y="280"/>
     </wire>
     <wire>
       <p1 x="1580" y="240"/>
@@ -1882,36 +2016,12 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1580" y="280"/>
     </wire>
     <wire>
-      <p1 x="2380" y="960"/>
-      <p2 x="2380" y="1020"/>
-    </wire>
-    <wire>
-      <p1 x="2380" y="860"/>
-      <p2 x="2380" y="900"/>
-    </wire>
-    <wire>
-      <p1 x="2320" y="1140"/>
-      <p2 x="2320" y="1200"/>
-    </wire>
-    <wire>
-      <p1 x="2000" y="-60"/>
-      <p2 x="2000" y="0"/>
+      <p1 x="2220" y="-80"/>
+      <p2 x="2220" y="-20"/>
     </wire>
     <wire>
       <p1 x="1840" y="140"/>
       <p2 x="1840" y="160"/>
-    </wire>
-    <wire>
-      <p1 x="2260" y="900"/>
-      <p2 x="2260" y="920"/>
-    </wire>
-    <wire>
-      <p1 x="2260" y="1180"/>
-      <p2 x="2260" y="1200"/>
-    </wire>
-    <wire>
-      <p1 x="2260" y="940"/>
-      <p2 x="2260" y="960"/>
     </wire>
     <wire>
       <p1 x="1460" y="80"/>
@@ -1922,14 +2032,6 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="1780" y="100"/>
     </wire>
     <wire>
-      <p1 x="2040" y="60"/>
-      <p2 x="2040" y="220"/>
-    </wire>
-    <wire>
-      <p1 x="1880" y="240"/>
-      <p2 x="1880" y="260"/>
-    </wire>
-    <wire>
       <p1 x="1720" y="20"/>
       <p2 x="1720" y="200"/>
     </wire>
@@ -1938,8 +2040,8 @@ this.&apos;Output Splitting&apos; = &quot;0-7,8-&quot;+(args.bits+7);</string>
       <p2 x="700" y="980"/>
     </wire>
     <wire>
-      <p1 x="1980" y="-80"/>
-      <p2 x="1980" y="-20"/>
+      <p1 x="1980" y="60"/>
+      <p2 x="1980" y="220"/>
     </wire>
   </wires>
   <measurementOrdering/>

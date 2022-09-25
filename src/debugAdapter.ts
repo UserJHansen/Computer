@@ -43,12 +43,15 @@ export class CompDebugSession extends LoggingDebugSession {
   private _isConnected = false;
   private _isRunning = false;
   private _breakpoints: DebugProtocol.Breakpoint[] = [];
-  private _rawBreakpoints: DebugProtocol.InstructionBreakpoint[] = [];
   private _lineMap: number[] = [];
   private _currentCTR = 0;
 
+  private _instructions: Instruction[] = [];
+  private _rawBreakpoints: DebugProtocol.InstructionBreakpoint[] = [];
+  private _stackptr = 0;
+
   private _variableHandles = new Handles<"locals" | "ram" | "memory">();
-  private _stackFrames = new Map<number, StackFrame>();
+  private _stackFrames: number[] = [];
 
   private _configurationDone = new Subject();
 
@@ -218,6 +221,8 @@ export class CompDebugSession extends LoggingDebugSession {
     request?: DebugProtocol.Request
   ): void {
     this._isRunning = false;
+
+    this.write("stop");
     console.log(
       `disconnectRequest suspend: ${args.suspendDebuggee}, terminate: ${args.terminateDebuggee}`
     );
@@ -241,6 +246,15 @@ export class CompDebugSession extends LoggingDebugSession {
     this._source = data.toString().split(/\r?\n/);
     this._lineMap = createLineMap(this._source);
     await this.debug(build(data.toString()));
+    this._instructions = getInstructions(this._source).flatMap<Instruction>(
+      (instruction) => {
+        if (instruction instanceof Instruction) {
+          return instruction;
+        } else {
+          return instruction.instructions;
+        }
+      }
+    );
 
     this.sendResponse(response);
     if (args.stopOnEntry) {
@@ -325,7 +339,9 @@ export class CompDebugSession extends LoggingDebugSession {
       if (data.length === 0) {
         this.sendEvent(new OutputEvent("Reached Halt", "stderr"));
         console.log("No data, retrying");
-        return this.write("run").then(console.log).then(this.measure);
+        return this.write("run")
+          .then(console.log)
+          .then(() => this.measure());
       }
 
       try {
@@ -350,9 +366,42 @@ export class CompDebugSession extends LoggingDebugSession {
         );
       }
       this._currentCTR = num;
+      if (
+        ["PUSH", "POP", "PUT", "MOVSPD", "MOVSPB", "MOVSP"].includes(
+          this._instructions[this._currentCTR].instructionName
+        )
+      ) {
+        const registers = await this.measure();
+
+        switch (this._instructions[this._currentCTR].instructionName) {
+          case "PUSH":
+            this._stackFrames[this._stackptr] = registers.A;
+            this._stackptr++;
+            break;
+          case "PUT":
+            this._stackFrames[this._stackptr] = registers.Data;
+            this._stackptr++;
+            break;
+          case "POP":
+            this._stackFrames[this._stackptr] = registers.Data;
+            this._stackptr--;
+            break;
+          case "MOVSPD":
+            this._stackptr += registers.Data;
+            break;
+          case "MOVSPA":
+            this._stackptr += registers.A;
+            break;
+          case "MOVSP":
+            this._stackptr = registers.A;
+            break;
+        }
+      }
+
       if (stop) {
         this.sendEvent(new StoppedEvent("step", CompDebugSession.threadID));
       }
+
       return num;
     }
     return this._currentCTR;
@@ -382,23 +431,14 @@ export class CompDebugSession extends LoggingDebugSession {
     args: DebugProtocol.DisassembleArguments,
     request?: DebugProtocol.Request | undefined
   ) {
-    const _instructions = getInstructions(this._source);
-    const instructions = _instructions
-      .flatMap<Instruction>((instruction) => {
-        if (instruction instanceof Instruction) {
-          return instruction;
-        } else {
-          return instruction.instructions;
-        }
-      })
-      .map((instruction, index) => ({
-        address: index.toString(),
-        instructionBytes: Array.from(instruction.toArray())
-          .map((n) => n.toString(16).padStart(2, "0"))
-          .join(" "),
-        instruction: instruction.instructionName + " " + instruction.data,
-        line: this._lineMap.indexOf(index),
-      }));
+    const instructions = this._instructions.map((instruction, index) => ({
+      address: index.toString(),
+      instructionBytes: Array.from(instruction.toArray())
+        .map((n) => n.toString(16).padStart(2, "0"))
+        .join(" "),
+      instruction: instruction.instructionName + " " + instruction.data,
+      line: this._lineMap.indexOf(index),
+    }));
 
     response.body = {
       instructions,
@@ -465,7 +505,7 @@ export class CompDebugSession extends LoggingDebugSession {
   ): void {
     const startFrame =
       typeof args.startFrame === "number" ? args.startFrame : 0;
-    const maxLevels = typeof args.levels === "number" ? args.levels : 1000;
+    const maxLevels = typeof args.levels === "number" ? args.levels : 20;
     const endFrame = startFrame + maxLevels;
     const frames: StackFrame[] = [
       new StackFrame(
@@ -477,14 +517,11 @@ export class CompDebugSession extends LoggingDebugSession {
     ];
     frames[0].instructionPointerReference = this._currentCTR.toString();
 
-    // This would fill with a real stack based on the instructions in the source
-    // TODO: read the passing instructions and fill the stack
     for (let i = startFrame; i < endFrame; i++) {
-      const frame = this._stackFrames.get(i);
-      if (frame) {
-        frames.push(frame);
+      if (i in this._stackFrames) {
+        frames.push(new StackFrame(i + 1, this._stackFrames[i].toString()));
       } else {
-        frames.push(new StackFrame(i, "???"));
+        // frames.push(new StackFrame(i, "???"));
       }
     }
 

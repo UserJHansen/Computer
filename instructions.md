@@ -15,7 +15,6 @@ Group 15: Special
 
 To be implemented: 
 - Bitwise
-- Stack
 - I/O
 
 0 - 0 - 00000000 - LDA - Set register A
@@ -87,11 +86,11 @@ To be implemented:
 3 - 63 - 00111111 - RORD - A = A >> Data | A << (32-Data)
 
 4 - 64 - 01000000 - PUSH - Push A to stack
-4 - 65 - 01000001 - POP - Pop from stack to A
-4 - 66 - 01000010 - PUT - Push Data to stack
-4 - 67 - 01000011 - MOVSP - Move stack pointer
-4 - 68 - 01000100 - 
-4 - 69 - 01000101 -
+4 - 65 - 01000001 - PUT - Push Data to stack
+4 - 66 - 01000010 - POP - Pop from stack to A
+4 - 67 - 01000011 - MOVSPD - Move stack pointer
+4 - 68 - 01000100 - MOVSPA - Move stack pointer by A
+4 - 69 - 01000101 - MOVSP - Move stack pointer to A
 4 - 70 - 01000110 -
 4 - 71 - 01000111 -
 4 - 72 - 01001000 -
