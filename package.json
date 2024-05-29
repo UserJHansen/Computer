@@ -42,7 +42,7 @@
     "@vscode/debugadapter-testsupport": "^1.56.0",
     "await-notify": "^1.0.1",
     "base64-js": "^1.5.1",
-    "concurrently": "^7.4.0",
+    "concurrently": "^7.6.0",
     "esbuild": "^0.14.29",
     "eslint": "^8.12.0",
     "events": "^3.3.0",
@@ -225,6 +225,7 @@
     ]
   },
   "dependencies": {
+    "@vscode/debugprotocol": "^1.65.0",
     "tmp-promise": "^3.0.3"
   }
 }
