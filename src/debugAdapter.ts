@@ -263,7 +263,6 @@ export class CompDebugSession extends LoggingDebugSession {
       this.run();
     }
   }
-  attachRequest = this.launchRequest;
 
   protected async debug(prog: Uint8Array) {
     await this.write("stop");

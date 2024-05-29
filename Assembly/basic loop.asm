@@ -3,7 +3,7 @@ LDC 0x0000ff
 LDD 0x00ff00
 LDA 255
 ; comment again
-SUB 1
+SUBD 1
 ; comment
 MACRO ADDB 1
 JNZ 6
