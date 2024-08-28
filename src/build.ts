@@ -77,11 +77,9 @@ export function build(program: string): Uint8Array {
 }
 
 if (require.main === module) {
-  glob("*.asm", { cwd: process.cwd() + "\\Assembly" }, (err, filenames) => {
-    if (err) {
-      console.error(err);
-    }
-
+  console.log(process.cwd() + "\\Assembly")
+  glob("*.asm", { cwd: "./Assembly" }).then((filenames) => {
+    console.log(`Recieved ${filenames.length} assembly files`)
     for (const filename of filenames) {
       try {
         fs.readFile("Assembly/" + filename, "utf8", function (err, file) {
@@ -104,5 +102,5 @@ if (require.main === module) {
         console.error("File:", filename);
       }
     }
-  });
+  }).catch(console.error);
 }

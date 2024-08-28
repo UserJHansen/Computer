@@ -19,7 +19,6 @@ finished:
 MV C A
 JNEQ composite
 prime:
-MV C A
 PUSH
 MACRO ADDD 1
 composite:
